@@ -27,3 +27,5 @@ gitignore.io 설정
 
 2. npm install (모듈 설치 후 실행)
    
+
+서버 종료 CTAL + C

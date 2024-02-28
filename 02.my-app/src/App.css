@@ -1,0 +1,18 @@
+div {
+  background-color: black;
+  color: azure;
+  padding: 50px;
+  text-align: center;
+}
+h1{
+  color: cornsilk;
+}
+h3{
+  background-color:lightgray;
+}
+.class1 {
+  color:silver;
+}
+#id2 {
+  background-color: darkgray;
+}
