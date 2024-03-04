@@ -45,5 +45,11 @@ function Assign() {
 
     const {model: m3, year: y3, color: c3} = car;
     console.log(`model=${m3}, color = ${c3}, year = ${y3}`)
+
+    //{model, year} = car;
+    const func1 = ({model, year}) => {
+        console.log(`model=${model}, year = ${year}`)
+    }
+    func1(car);
 }
 export default Assign;
