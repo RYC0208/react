@@ -1,19 +1,18 @@
 import './App.css';
 import {Navbar,Container,Nav, Row, Col, Button} from 'react-bootstrap';
-import { createContext, useState } from 'react';
+import { useState } from 'react';
 import { Routes, Route, useNavigate, Outlet } from 'react-router-dom';
 import pList from './data/ProductList';
 import Detail from './pages/Detail';
 import axios from 'axios';
-
+import Cart from './pages/Cart.js';
 /*
-  - AJAX 사용
-    설치 : npm i axios
+  Redux사용
+  1) 설치 : npm i @reduxjs/toolkit@1.8.1 react-redux
 */
-
-export let Context1 = createContext();
 function App() {
   let [stock, setStock] = useState([10,11,12]);
+
   let [clothes, setClothes] = useState(pList);
   let navigate = useNavigate();  // 페이지의 이동을 도와주는 함수
   let [btnCount, setBtnCount] = useState(2);
@@ -88,12 +87,10 @@ function App() {
         }/>
 
         <Route path='/detail/:id' element={
-          <Context1.Provider value = {{stock, clothes}}>
             <Detail clothes={clothes} />
-          </Context1.Provider>
         }/>
 
-        <Route path='/cart' element={<div>장바구니</div>}/>
+        <Route path='/cart' element={<Cart/>}/>
         <Route path='*' element={<div>없는 페이지 입니다.</div>}/> {/* 404페이지 */}
 
         <Route path='/about' element={ <About /> }>

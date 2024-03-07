@@ -12,8 +12,10 @@ import axios from 'axios';
 */
 
 export let Context1 = createContext();
+
 function App() {
   let [stock, setStock] = useState([10,11,12]);
+
   let [clothes, setClothes] = useState(pList);
   let navigate = useNavigate();  // 페이지의 이동을 도와주는 함수
   let [btnCount, setBtnCount] = useState(2);
@@ -55,7 +57,7 @@ function App() {
               */
               axios.get(`https://raw.githubusercontent.com/professorjiwon/data/main/data${btnCount}.json`)
                    .then((result)=>{
-                    console.log(result.data);
+                    console.log(result);
                     let copy = [...clothes, ...result.data]
                     setClothes(copy)
                     setBtnCount(btnCount+1)
@@ -88,7 +90,7 @@ function App() {
         }/>
 
         <Route path='/detail/:id' element={
-          <Context1.Provider value = {{stock, clothes}}>
+          <Context1.Provider value={{stock, clothes}}>
             <Detail clothes={clothes} />
           </Context1.Provider>
         }/>

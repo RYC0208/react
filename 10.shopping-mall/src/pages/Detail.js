@@ -2,27 +2,24 @@ import { useContext, useEffect, useState } from 'react';
 import { Container, Row, Col, Button, Nav } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import './../App.css';
-import { Context1 } from './../App';
+
 /*
   Single page Application의 단점
-  1) 컴포넌트간의 state 공유 어려움
-     특히 형제간의 컴포넌트의 공유는 더욱 어려움
+  1) 컴포넌트간의 state공유 어려움
+     특히, 형제간의 컴포넌트의 공유
 
   공동으로 사용할 수 있는 방법
   1) Context Api 문법
   2) Redux 외부라이브러리 사용
+
 */
 function Detail(props) {
-
-  let a = useContext(Context1);
-  console.log(a);
 
   let {id} = useParams();
   let findId = props.clothes.find(function(x){
     return x.id == id
   })
   let [tab, setTab] = useState(0);
-
   let [fade2, setFade2] = useState('')
 
   useEffect(()=>{
@@ -68,7 +65,7 @@ function Detail(props) {
 function TabContent({tab, clothes}) {
   
   let [fade, setFade] = useState('')
-  let {stock} = useContext(Context1)
+
   useEffect(()=>{
     setTimeout(()=>{setFade('end')}, 200)
     return()=>{
@@ -78,7 +75,7 @@ function TabContent({tab, clothes}) {
 
   return ( 
     <div className={`start ${fade}`}>
-      { [<div>{stock}</div>,<div>내용1</div>,<div>내용2</div>][tab] } 
+      { [<div>내용0</div>,<div>내용1</div>,<div>내용2</div>][tab] } 
     </div>
   )
 }
