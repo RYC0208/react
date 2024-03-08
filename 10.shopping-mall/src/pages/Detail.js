@@ -2,17 +2,9 @@ import { useContext, useEffect, useState } from 'react';
 import { Container, Row, Col, Button, Nav } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import './../App.css';
+import {addItem} from './../store';
+import { useDispatch } from 'react-redux';
 
-/*
-  Single page Application의 단점
-  1) 컴포넌트간의 state공유 어려움
-     특히, 형제간의 컴포넌트의 공유
-
-  공동으로 사용할 수 있는 방법
-  1) Context Api 문법
-  2) Redux 외부라이브러리 사용
-
-*/
 function Detail(props) {
 
   let {id} = useParams();
@@ -21,6 +13,21 @@ function Detail(props) {
   })
   let [tab, setTab] = useState(0);
   let [fade2, setFade2] = useState('')
+
+  let dispatch = useDispatch()
+
+  useEffect(()=> {
+    // console.log("출력 : " + findId.id)
+
+    let w = localStorage.getItem('watched')
+    w = JSON.parse(w)
+    w.push(findId.id)
+
+    w = new Set(w)
+    w = Array.from(w)
+
+    localStorage.setItem('watched', JSON.stringify(w))
+  },[])
 
   useEffect(()=>{
     setTimeout(()=>{setFade2('end')}, 200)
@@ -40,7 +47,9 @@ function Detail(props) {
             <h4>{findId.title}</h4>
             <p>{findId.content}</p>
             <p>{findId.price}</p>
-            <Button variant="secondary">주문하기</Button>
+            <Button variant="secondary" onClick={()=>{
+              dispatch(addItem({id:findId.id , name:findId.title , count:1}))
+            }}>장바구니에 담기</Button>
           </Col>
         </Row>
       </Container>

@@ -1,5 +1,5 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-import user2 from './store/userSlice.js'
+import user2 from './store/userSlice'
 
 let user = createSlice({
   name : 'user',
@@ -15,16 +15,20 @@ let cart = createSlice({
   name : 'cart',
   initialState : [
     {id:0, name:"vest", count:2},
-    {id:2, name:"jacket", count:1}
+    {id:2, name:"jacket", count:1},
   ],
   reducers : {
     addCount(state, action) {
       let i = state.findIndex((a)=>{return a.id == action.payload})
       state[i].count++
+    },
+    addItem(state, action) {
+      state.push(action.payload)
     }
   }
 })
-export let {addCount} = cart.actions
+export let { addCount, addItem } = cart.actions
+
 /*
   Redux의 state를 변경하고 싶으면
   1) state함수를 만들기
@@ -32,7 +36,6 @@ export let {addCount} = cart.actions
   3) 쓰는곳에서는 import, dispatch()감싸줘야 한다
 
 */
-
 let member = createSlice({
   name : 'member',
   initialState : 'Kim',
