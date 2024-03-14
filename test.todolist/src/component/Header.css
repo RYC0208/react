@@ -1,0 +1,9 @@
+.Header{
+  text-align: center;
+}
+.Header h1 {
+  color: rgb(107, 165, 219);
+}
+.Header h3 {
+  color: rgb(61, 129, 192);
+}
