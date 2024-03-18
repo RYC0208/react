@@ -18,7 +18,8 @@ function App() {
 } 
 */
 
-/* 객체형태를 넘기기
+// 객체형태를 넘기기
+/*
 function App() {
   const userInfo = {
     name : "박미영",
@@ -29,13 +30,15 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Body {...userInfo} />
+      //  <Body {...userInfo} /> 
+      <Body userInfo={userInfo} />
       <Footer />
     </div>
   );
 } 
 */
 
+// 3.
 function App() {
   return (
     <div className="App">
@@ -45,4 +48,5 @@ function App() {
     </div>
   );
 } 
+
 export default App;
